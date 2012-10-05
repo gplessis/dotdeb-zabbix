@@ -1,0 +1,21 @@
+Index: zabbix-2.0.3/src/libs/zbxsysinfo/linux/diskspace.c
+===================================================================
+--- zabbix-2.0.3.orig/src/libs/zbxsysinfo/linux/diskspace.c
++++ zabbix-2.0.3/src/libs/zbxsysinfo/linux/diskspace.c
+@@ -117,6 +117,8 @@ int	VFS_FS_DISCOVERY(const char *cmd, co
+ 			if (NULL == (p = strchr(line, ' ')))
+ 				continue;
+ 
++			*p = '\0';
++
+ 			mpoint = ++p;
+ 
+ 			if (NULL == (p = strchr(mpoint, ' ')))
+@@ -132,6 +134,7 @@ int	VFS_FS_DISCOVERY(const char *cmd, co
+ 			*p = '\0';
+ 
+ 			zbx_json_addobject(&j, NULL);
++			zbx_json_addstring(&j, "{#DEVICE}", line, ZBX_JSON_TYPE_STRING);
+ 			zbx_json_addstring(&j, "{#FSNAME}", mpoint, ZBX_JSON_TYPE_STRING);
+ 			zbx_json_addstring(&j, "{#FSTYPE}", mtype, ZBX_JSON_TYPE_STRING);
+ 			zbx_json_close(&j);
