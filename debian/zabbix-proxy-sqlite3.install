@@ -1,0 +1,5 @@
+debian/tmp-build-SQLITE3/src/zabbix_proxy/zabbix_proxy usr/sbin
+debian/tmp-build-SQLITE3/src/zabbix_get/zabbix_get usr/bin
+database/sqlite3/schema.sql usr/share/zabbix-proxy-sqlite3
+conf/zabbix_proxy.conf usr/share/zabbix-proxy-sqlite3
+

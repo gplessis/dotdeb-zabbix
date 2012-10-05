@@ -1,0 +1,27 @@
+Last-Update: 2012-10-04
+Author: Dmitry Smirnov <onlyjob@member.fsf.org>
+Forwarded: not-needed
+Description: use 'libgcrypt' in order to avoid linking with OpenSSL due to license conflict.
+
+--- a/m4/netsnmp.m4
++++ b/m4/netsnmp.m4
+@@ -55,7 +55,7 @@
+ 			esac
+ 		done
+ 
+-		_full_libnetsnmp_libs="`$_libnetsnmp_config --libs` -lcrypto"
++		_full_libnetsnmp_libs="`$_libnetsnmp_config --libs` -lgcrypt"
+ 		for i in $_full_libnetsnmp_libs; do
+ 			case $i in
+ 				-L*)
+--- a/m4/ucdsnmp.m4
++++ b/m4/ucdsnmp.m4
+@@ -74,7 +74,7 @@
+ 		found_snmp="yes"
+                 AC_MSG_RESULT(yes)
+ 
+-                AC_CHECK_LIB(crypto, main, SNMP_LIBS="$SNMP_LIBS -lcrypto")
++                AC_CHECK_LIB(gcrypt, main, SNMP_LIBS="$SNMP_LIBS -lgcrypt")
+ 
+ 		SNMP_CPPFLAGS=-I$SNMP_INCDIR
+ 		SNMP_LDFLAGS="-L$SNMP_LIBDIR"

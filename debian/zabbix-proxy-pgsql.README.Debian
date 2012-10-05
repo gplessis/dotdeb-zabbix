@@ -1,0 +1,29 @@
+Installing the database
+-----------------------
+
+The Zabbix proxy needs an SQL database to run. As you chose to install
+this zabbix-proxy-pgsql package you apparently want to use a PostgreSQL server
+as a storage backend.
+
+Set up PostgreSQL on any system - you are not forced to run it on the same
+computer as the Zabbix proxy:
+
+-> apt-get install postgresql
+ 
+Create a new database and access user (let's call both "zabbix"). By default on
+Debian systems you need to change to the "postgres" user:
+
+-> su - postgres
+-> createdb zabbix
+-> createuser -SDRP zabbix
+(You will get asked to enter a password for that new user account.)
+
+Then send the necessary SQL files to the database
+to create the required database schema:
+
+-> zcat /usr/share/zabbix-proxy-pgsql/schema.sql.gz \
+   | psql zabbix zabbix
+
+See also:
+http://www.zabbix.com/documentation/2.0/manual/appendix/install/db_scripts
+

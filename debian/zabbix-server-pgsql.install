@@ -1,0 +1,6 @@
+debian/tmp-build-PGSQL/src/zabbix_server/zabbix_server usr/sbin
+debian/tmp-build-PGSQL/src/zabbix_get/zabbix_get usr/bin
+database/postgresql/*.sql usr/share/zabbix-server-pgsql
+upgrades/dbpatches/2.0/postgresql/patch.sql usr/share/zabbix-server-pgsql
+conf/zabbix_server.conf usr/share/zabbix-server-pgsql
+

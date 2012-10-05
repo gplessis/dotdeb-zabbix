@@ -1,0 +1,212 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Zabbix
+Upstream-Contact: Alexei Vladishev <alexei.vladishev@zabbix.com>
+Source: http://www.zabbix.com/download.php
+Copyright: 2000-2012 Zabbix SIA
+License: GPL-2+
+Comment:
+ This package was debianized by Michael Ablassmeier <abi@debian.org>
+ on Tue, 23 Mar 2004 22:46:45 +0100.
+
+Files: debian/*
+Copyright: 2009-2012 Christoph Haas <haas@debian.org>
+           2012      Dmitry Smirnov <onlyjob@member.fsf.org>
+           2006-2009 Fabio Tranchitella <kobold@debian.org>
+           2006-2011 Michael Ablassmeier <abi@debian.org>
+License: GPL-2+
+
+Files: *
+Copyright: 2000-2012 Zabbix SIA
+License: GPL-2+
+Comment:
+ Author: Alexei Vladishev <alexei.vladishev@zabbix.com>
+
+Files: include/gnuregex.h
+       include/zbxgetopt.h
+       src/libs/zbxcommon/zbxgetopt.c
+       src/libs/zbxcommon/gnuregex.c
+Copyright: 1985,1987,1988-1993 Free Software Foundation, Inc
+License: GPL-2+
+
+Files: include/md5.h src/libs/zbxcrypto/md5.c
+Copyright: 1999,2000,2002 Aladdin Enterprises. All rights reserved
+License:
+ This software is provided 'as-is', without any express or implied
+ warranty.  In no event will the authors be held liable for any damages
+ arising from the use of this software.
+ .
+ Permission is granted to anyone to use this software for any purpose,
+ including commercial applications, and to alter it and redistribute it
+ freely, subject to the following restrictions:
+ .
+ 1. The origin of this software must not be misrepresented; you must not
+    claim that you wrote the original software. If you use this software
+    in a product, an acknowledgment in the product documentation would be
+    appreciated but is not required.
+ 2. Altered source versions must be plainly marked as such, and must not be
+    misrepresented as being the original software.
+ 3. This notice may not be removed or altered from any source distribution.
+ .
+ L. Peter Deutsch
+ ghost@aladdin.com
+
+Files: src/libs/zbxcommon/str.c
+Copyright: 2000-2011 Zabbix SIA
+License: GPL-2+
+Comment: with portions
+ Copyright: 1998 Todd C. Miller <Todd.Miller@courtesan.com>
+ License:
+  Permission to use, copy, modify, and distribute this software for any
+  purpose with or without fee is hereby granted, provided that the above
+  copyright notice and this permission notice appear in all copies.
+  .
+  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+Files: src/libs/zbxsys/mutexs.c
+Copyright: 2000-2011 Zabbix SIA
+License: GPL-2+
+Comment:
+ Part of source file is subject to version 3.01 of the PHP license
+ that is available at http://www.php.net/license/3_01.txt
+ Copyright: 1997-2006 The PHP Group
+ License: PHP-3.01
+  The PHP License, version 3.01
+  Copyright (c) 1999 - 2012 The PHP Group. All rights reserved.
+  --------------------------------------------------------------------
+  Redistribution and use in source and binary forms, with or without
+  modification, is permitted provided that the following conditions
+  are met:
+  .
+   1. Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+  .
+   2. Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in
+      the documentation and/or other materials provided with the
+      distribution.
+  .
+   3. The name "PHP" must not be used to endorse or promote products
+      derived from this software without prior written permission. For
+      written permission, please contact group@php.net.
+  .
+   4. Products derived from this software may not be called "PHP", nor
+      may "PHP" appear in their name, without prior written permission
+      from group@php.net.  You may indicate that your software works in
+      conjunction with PHP by saying "Foo for PHP" instead of calling
+      it "PHP Foo" or "phpfoo"
+  .
+   5. The PHP Group may publish revised and/or new versions of the
+      license from time to time. Each version will be given a
+      distinguishing version number.
+      Once covered code has been published under a particular version
+      of the license, you may always continue to use it under the terms
+      of that version. You may also choose to use such covered code
+      under the terms of any subsequent version of the license
+      published by the PHP Group. No one other than the PHP Group has
+      the right to modify the terms applicable to covered code created
+      under this License.
+  .
+   6. Redistributions of any form whatsoever must retain the following
+      acknowledgment:
+      "This product includes PHP software, freely available from
+      <http://www.php.net/software/>".
+   .
+  THIS SOFTWARE IS PROVIDED BY THE PHP DEVELOPMENT TEAM ``AS IS'' AND
+  ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+  PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE PHP
+  DEVELOPMENT TEAM OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+  OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Files: misc/init.d/suse/*
+Copyright: 2004 A.Tophofen
+License: GPL-2+
+Comment: assuming the same license as for the whole application
+
+Files: frontend/php/js/prototype.js
+Copyright: (C) 2005-2010 Sam Stephenson <sam@conio.net>
+License: MIT
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+Files: frontend/php/js/jquery/jquery.js
+Copyright: 2005-2011 John Resig, Brandon Aaron & Jörn Zaefferer
+License: GPL-2 or MIT-jq
+
+Files: frontend/php/js/jquery/jquery-ui.js
+Copyright: 2012 jQuery Foundation and other contributors
+License: GPL-2 or MIT-jq
+
+License: MIT-jq
+ Copyright (c) 2012 jQuery Foundation and other contributors,
+ http://jquery.com/
+ .
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ .
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+License: GPL-2
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 2 of the License.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ The complete text of the GNU General Public License version 2
+ can be found in `/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ The complete text of the GNU General Public License version 2
+ can be found in `/usr/share/common-licenses/GPL-2'.

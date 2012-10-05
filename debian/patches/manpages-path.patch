@@ -1,0 +1,58 @@
+Last-Update: 2012-07-17
+Author: Dmitry Smirnov <onlyjob@member.fsf.org>
+Forwarded: not-needed
+Description: correct location of config files in man pages
+
+--- a/man/zabbix_agentd.man
++++ b/man/zabbix_agentd.man
+@@ -21,7 +21,7 @@
+ Output version information and exit.
+ .SH FILES
+ .TP
+-.I /usr/local/etc/zabbix_agentd.conf
++.I /etc/zabbix/zabbix_agentd.conf
+ Default location of Zabbix agent configuration file (if not modified during compile time).
+ .SH "SEE ALSO"
+ .BR zabbix_get (8),
+--- a/man/zabbix_proxy.man
++++ b/man/zabbix_proxy.man
+@@ -28,7 +28,7 @@
+ Output version information and exit.
+ .SH FILES
+ .TP
+-.I /usr/local/etc/zabbix_proxy.conf
++.I /etc/zabbix/zabbix_proxy.conf
+ Default location of Zabbix proxy configuration file (if not modified during compile time).
+ .SH "SEE ALSO"
+ .BR zabbix_agentd (8),
+--- a/man/zabbix_server.man
++++ b/man/zabbix_server.man
+@@ -30,7 +30,7 @@
+ Output version information and exit.
+ .SH FILES
+ .TP
+-.I /usr/local/etc/zabbix_server.conf
++.I /etc/zabbix/zabbix_server.conf
+ Default location of Zabbix server configuration file (if not modified during compile time).
+ .SH "SEE ALSO"
+ .BR zabbix_agentd (8),
+--- a/man/zabbix_sender.man
++++ b/man/zabbix_sender.man
+@@ -39,7 +39,7 @@
+ .IP "-V, --version"
+ Output version information and exit.
+ .SH "EXAMPLES"
+-.B zabbix_sender -c /usr/local/etc/zabbix_agentd.conf -s """Monitored Host""" -k mysql.queries -o 342.45
++.B zabbix_sender -c /etc/zabbix/zabbix_agentd.conf -s """Monitored Host""" -k mysql.queries -o 342.45
+ 
+ Send \fB342.45\fR as the value for \fBmysql.queries\fR key in \fBMonitored Host\fR host using Zabbix server defined in agent daemon configuration file.
+ 
+@@ -47,7 +47,7 @@
+ 
+ Send values from file \fBdata_values.txt\fR to server with IP \fB192.168.1.113\fR. Host names and keys are defined in the file.
+ 
+-.B echo """- hw.serial.number 1287872261 SQ4321ASDF""" | zabbix_sender -c /usr/local/etc/zabbix_agentd.conf -T -i -
++.B echo """- hw.serial.number 1287872261 SQ4321ASDF""" | zabbix_sender -c /etc/zabbix/zabbix_agentd.conf -T -i -
+ 
+ Send a timestamped value from the commandline to Zabbix server, specified in the agent daemon configuration file. Dash in the input data indicates that hostname also should be used from the same configuration file.
+ 

@@ -1,0 +1,33 @@
+zabbix (1:2.0.1+dfsg-1) unstable; urgency=low
+
+  Configuration file needs to be adapted
+  --------------------------------------
+
+  Previous versions of this package (before 2.0) have set the database
+  access configuration in the /etc/zabbix/zabbix_proxy.conf file
+  automatically. Since version 2.0 this package will provide the
+  original configuration file with only minor changes. So you are
+  required to edit the configuration file and check the settings for
+  DBHost, DBName, DBUser and DBPassword.
+
+
+  Upgrading the Zabbix database schema
+  ------------------------------------
+
+  You have to change your database schema when updating from Zabbix 1.8
+  to Zabbix 2.0. Please find an SQL file containing the necessary
+  database changes in /usr/share/zabbix-proxy-mysql/patch.sql.gz. To
+  apply these changes just send the SQL statements to your zabbix
+  database. Example:
+
+  zcat /usr/share/zabbix-proxy-mysql/patch.sql.gz \
+   | mysql -u<username> -p<password> zabbix
+
+  Please make sure that "thread_stack" in your /etc/mysql/my.cnf is set
+  to at least 256K. Otherwise you may risk a failing database schema
+  upgrade.
+
+  Also see the Zabbix homepage for further information:
+  http://www.zabbix.com/documentation/2.0/manual/installation/upgrade_notes
+
+ -- Christoph Haas <haas@debian.org>  Sun, 01 Jul 2012 23:20:15 +0200

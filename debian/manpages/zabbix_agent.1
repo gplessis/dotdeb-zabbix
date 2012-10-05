@@ -1,0 +1,25 @@
+.TH ZABBIX "1" "June 2012" "ZABBIX Agent" "User Commands"
+.SH NAME
+zabbix_agent \- remote agent that collects system information
+.SH DESCRIPTION
+The Zabbix agent can be installed on system that are supposed to be monitored
+by a Zabbix server. It will listen on port 10050 and collect system information
+that gets evaluated by the Zabbix server.
+.SH USAGE
+zabbix_agent [\-Vhp] [\-c <file>] [\-t <item>]
+.SH OPTIONS
+.TP
+\fB\-c\fR \fB\-\-config\fR <file>
+Absolute path to the configuration file
+.TP
+\fB\-p\fR \fB\-\-print\fR
+Print known items and exit
+.TP
+\fB\-t\fR \fB\-\-test\fR <metric>
+Test specified item and exit
+.TP
+\fB\-h\fR \fB\-\-help\fR
+Give this help
+.TP
+\fB\-V\fR \fB\-\-version\fR
+Display version number

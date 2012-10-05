@@ -1,0 +1,23 @@
+  DFSG concerns
+  -------------
+
+  With version 2.0.0 upstream is shipping binary files without sources in
+
+    src/zabbix_java/lib
+    frontends/php/images/flash
+
+  Hence we're repackaging orig.tar :(
+  
+
+  Embedded (bundled) libraries
+  ----------------------------
+  
+  Using Prototype, jQuery and jQuery UI as shipping with Zabbix
+
+  Formerly the Javascript libraries have been stripped from the upstream
+  package and instead linked from the respective Debian packages (e.g.
+  libjs-jquery). However this replacement is error-prone, the exact needed
+  version of the Javascript libraries cannot be guaranteed and it makes
+  backporting hard. As it's just a handful of small files I decided to
+  rather keep the upstream files.
+  

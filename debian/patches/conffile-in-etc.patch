@@ -1,0 +1,17 @@
+Last-Update: 2012-08-05
+Author: Christoph Haas <haas@debian.org>
+Description: Make Zabbix put its generated config file into /etc/zabbix
+
+--- a/frontends/php/include/config.inc.php
++++ b/frontends/php/include/config.inc.php
+@@ -64,8 +64,8 @@
+ $USER_RIGHTS = array();
+ $ZBX_LOCALNODEID = 0;
+ $ZBX_LOCMASTERID = 0;
+-$ZBX_CONFIGURATION_FILE = './conf/zabbix.conf.php';
+-$ZBX_CONFIGURATION_FILE = realpath(dirname($ZBX_CONFIGURATION_FILE)).DIRECTORY_SEPARATOR.basename($ZBX_CONFIGURATION_FILE);
++$ZBX_CONFIGURATION_FILE = '/etc/zabbix/zabbix.conf.php';
++#$ZBX_CONFIGURATION_FILE = realpath(dirname($ZBX_CONFIGURATION_FILE)).DIRECTORY_SEPARATOR.basename($ZBX_CONFIGURATION_FILE);
+ 
+ // include tactical overview modules
+ require_once dirname(__FILE__).'/locales.inc.php';

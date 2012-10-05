@@ -1,0 +1,9 @@
+# see README.source
+zabbix-frontend-php binary: embedded-javascript-library usr/share/zabbix/js/jquery/jquery.js
+zabbix-frontend-php binary: embedded-javascript-library usr/share/zabbix/js/prototype.js
+
+# lintian worried that we link to file provided by "base-files"
+package-contains-broken-symlink usr/share/zabbix/conf/COPYING ../../common-licenses/GPL-2
+
+# link to conf file
+package-contains-broken-symlink usr/share/zabbix/conf/zabbix.conf.php etc/zabbix/zabbix.conf.php

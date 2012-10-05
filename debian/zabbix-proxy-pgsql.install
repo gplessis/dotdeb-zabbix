@@ -1,0 +1,6 @@
+debian/tmp-build-PGSQL/src/zabbix_proxy/zabbix_proxy usr/sbin
+debian/tmp-build-PGSQL/src/zabbix_get/zabbix_get usr/bin
+database/postgresql/schema.sql usr/share/zabbix-proxy-pgsql
+upgrades/dbpatches/2.0/postgresql/patch.sql usr/share/zabbix-proxy-pgsql
+conf/zabbix_proxy.conf usr/share/zabbix-proxy-pgsql
+

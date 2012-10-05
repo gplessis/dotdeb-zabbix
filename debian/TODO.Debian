@@ -1,0 +1,55 @@
+
+Security issues in 1.8.x
+
+The Zabbix developers could not deliver backported patches for these security issues:
+
+- http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=652664
+  https://support.zabbix.com/browse/ZBX-4015
+  "Persistent Cross Site Scripting Vulnerabilities"
+
+  concerns 1.8.2 and 1.8.9
+
+- http://security-tracker.debian.org/tracker/CVE-2011-2904
+  http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2904
+  https://support.zabbix.com/browse/ZBX-3835
+
+- http://security-tracker.debian.org/tracker/CVE-2011-3263
+  http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3263
+  https://support.zabbix.com/browse/ZBX-3794
+
+- http://security-tracker.debian.org/tracker/CVE-2011-3265
+  http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3265
+  https://support.zabbix.com/browse/ZBX-3840
+
+- http://security-tracker.debian.org/tracker/CVE-2011-4674
+  http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-4674
+  https://support.zabbix.com/browse/ZBX-4385
+
+--------------------------------
+
+Concerning dbconfig-common
+
+Previously the zabbix-server-mysql and zabbix-server-pgsql packages
+were using dbconfig-common for package management.
+Advantages:
+- automatic population of the database
+- automatic configuration in /etc/zabbix
+Disadvantages:
+- the upstream's SQL schema upgrade procedure failed time and again.
+  they just told us to "ignore the errors" which is something that
+  dbconfig-common can't do.
+- dbconfig-common always takes a backup before upgrading the database.
+  which means dumping all the data using pg_dump or mysqldump into
+  the /var/backups directory. This is very slow - there are better ways
+  to backup a database. And in many cases it will just break because
+  Zabbix tends to create large database (10-20 GB isn't unusual) and
+  often such a dump doesn't fit into /var/backups.
+- user feedback told us that they find dbconfig-common confusing
+- the dependencies are problematic. If mysql-server is not yet installed
+  then the installation will break and have to be rolled back.
+  Adding a hard dependency on mysql-server would not make sense either
+  because users may choose to use a mysql-server on another host.
+Conclusion:
+- we removed dbconfig-common and instead added hints on how to setup
+  or upgrade the database in the README.Debian
+

@@ -1,0 +1,39 @@
+Installing the database
+-----------------------
+
+The Zabbix server needs an SQL database to run. As you chose to install
+this zabbix-server-mysql package you apparently want to use a MySQL server
+as a storage backend.
+
+Set up a MySQL database server on any system - you are not forced to run it
+on the same computer as the Zabbix server:
+
+-> apt-get install mysql-server
+
+Create a new database (let's call it "zabbix"):
+
+-> mysql -p -e "create database zabbix character set utf8"
+
+Create a MySQL user that has access rights to the database
+(please use another password than 'SECRETPASSWORD'):
+
+-> mysql -p -e "grant all on zabbix.* to 'zabbix'@'localhost' identified by 'SECRETPASSWORD'"
+
+Create the database schema:
+
+-> zcat /usr/share/zabbix-server-mysql/{schema,images,data}.sql.gz \
+   | mysql -uzabbix -pSECRETPASSWORD zabbix
+
+Now enter the database access credentials into your
+/etc/zabbix/zabbix_server.conf, enable the startup in the
+/etc/default/zabbix-server-mysql file and start the Zabbix server.
+
+See also:
+http://www.zabbix.com/documentation/2.0/manual/appendix/install/db_scripts
+
+
+Upgrading the database
+----------------------
+
+Database schema upgrade requires manual intervention,
+see NEWS.Debian for instructions.
