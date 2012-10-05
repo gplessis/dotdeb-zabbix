@@ -1,3 +1,9 @@
+zabbix (1:2.0.3-1.dotdeb.0) stable; urgency=low
+
+  * Rebuilt for Dotdeb
+
+ -- Guillaume Plessis <gui@dotdeb.org>  Fri, 05 Oct 2012 14:34:42 +0200
+
 zabbix (1:2.0.3+dfsg-1~exp0) experimental; urgency=low
 
   * New upstream release.

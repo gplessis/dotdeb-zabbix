@@ -1,8 +1,7 @@
 Source: zabbix
 Section: net
 Priority: optional
-Maintainer: Christoph Haas <haas@debian.org>
-Uploaders: Fabio Tranchitella <kobold@debian.org>, Michael Ablassmeier <abi@debian.org>, Dmitry Smirnov <onlyjob@member.fsf.org>
+Maintainer: Guillaume Plessis <gui@dotdeb.org>
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9), automake1.9, dh-autoreconf, po-debconf
  ,libcurl4-gnutls-dev | libcurl3-gnutls-dev
