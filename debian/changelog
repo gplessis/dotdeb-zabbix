@@ -1,8 +1,9 @@
-zabbix (1:2.0.3-1.dotdeb.0) stable; urgency=low
+zabbix (1:2.0.3+dfsg-1~exp1) experimental; urgency=low
 
-  * Rebuilt for Dotdeb
+  * "basename.patch" is extended to fix pagination in frontend-php
+    (ZBX-4986).
 
- -- Guillaume Plessis <gui@dotdeb.org>  Fri, 05 Oct 2012 14:34:42 +0200
+ -- Dmitry Smirnov <onlyjob@member.fsf.org>  Sun, 18 Nov 2012 11:27:51 +1100
 
 zabbix (1:2.0.3+dfsg-1~exp0) experimental; urgency=low
 

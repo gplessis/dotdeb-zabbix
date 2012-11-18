@@ -1,0 +1,69 @@
+Last-Update: 2012-11-01
+Author: Dmitry Smirnov <onlyjob@member.fsf.org>
+Forwarded: not-needed
+Bug-Zabbix: https://support.zabbix.com/browse/ZBX-4986
+Description: fix columns sorting and pagination in frontend-php
+ Problem is manifesting with nginx/php-fpm
+ or with Apache/mod_proxy.
+
+--- a/frontends/php/include/func.inc.php
++++ b/frontends/php/include/func.inc.php
+@@ -1529,9 +1529,9 @@
+ 	if ($page['type'] != PAGE_TYPE_HTML && defined('ZBX_PAGE_MAIN_HAT')) {
+ 		$script = "javascript: return updater.onetime_update('".ZBX_PAGE_MAIN_HAT."', '".$url."');";
+ 	}
+ 	else {
+-		$script = 'javascript: redirect("'.$url.'");';
++		$script = 'javascript: redirect("'.basename($url).'");';
+ 	}
+ 
+ 	zbx_value2array($obj);
+ 	$cont = new CSpan();
+@@ -1629,15 +1629,15 @@
+ 	if ($pagesCount > 1) {
+ 		$url = new Curl();
+ 		if ($startPage > 1) {
+ 			$url->setArgument('page', 1);
+-			$pageline[] = new CLink('<< '._x('First', 'page navigation'), $url->getUrl(), null, null, true);
++			$pageline[] = new CLink('<< '._x('First', 'page navigation'), basename($url->getUrl()), null, null, true);
+ 			$pageline[] = '&nbsp;&nbsp;';
+ 		}
+ 
+ 		if ($currentPage > 1) {
+ 			$url->setArgument('page', $currentPage - 1);
+-			$pageline[] = new CLink('< '._x('Previous', 'page navigation'), $url->getUrl(), null, null, true);
++			$pageline[] = new CLink('< '._x('Previous', 'page navigation'), basename($url->getUrl()), null, null, true);
+ 			$pageline[] = ' | ';
+ 		}
+ 
+ 		for ($p = $startPage; $p <= $pagesCount; $p++) {
+@@ -1649,9 +1649,9 @@
+ 				$pagespan = new CSpan($p, 'bold textcolorstyles');
+ 			}
+ 			else {
+ 				$url->setArgument('page', $p);
+-				$pagespan = new CLink($p, $url->getUrl(), null, null, true);
++				$pagespan = new CLink($p, basename($url->getUrl()), null, null, true);
+ 			}
+ 
+ 			$pageline[] = $pagespan;
+ 			$pageline[] = ' | ';
+@@ -1662,16 +1662,16 @@
+ 		if ($currentPage < $pagesCount) {
+ 			$pageline[] = ' | ';
+ 
+ 			$url->setArgument('page', $currentPage + 1);
+-			$pageline[] = new CLink(_x('Next', 'page navigation').' >', $url->getUrl(), null, null, true);
++			$pageline[] = new CLink(_x('Next', 'page navigation').' >', basename($url->getUrl()), null, null, true);
+ 		}
+ 
+ 		if ($p < $pagesCount) {
+ 			$pageline[] = '&nbsp;&nbsp;';
+ 
+ 			$url->setArgument('page', $pagesCount);
+-			$pageline[] = new CLink(_x('Last', 'page navigation').' >>', $url->getUrl(), null, null, true);
++			$pageline[] = new CLink(_x('Last', 'page navigation').' >>', basename($url->getUrl()), null, null, true);
+ 		}
+ 
+ 		$table = new CTable(null, 'paging');
+ 		$table->addRow(new CCol($pageline));
