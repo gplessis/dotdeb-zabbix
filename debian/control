@@ -61,7 +61,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, fping, adduser, lsb-base
 Recommends: mysql-server (>= 5.0)
 Suggests: logrotate
-Conflicts: zabbix-proxy-pgsql, zabbix-proxy-sqite3, zabbix-server-mysql, zabbix-server-pgsql, zabbix-server-sqlite3
+Conflicts: zabbix-proxy-pgsql, zabbix-proxy-sqlite3, zabbix-server-mysql, zabbix-server-pgsql, zabbix-server-sqlite3
 Description: network monitoring solution - proxy (using MySQL)
  Zabbix is a server/client network monitoring system with many features.
  It can be used for:
