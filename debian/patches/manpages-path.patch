@@ -3,9 +3,11 @@ Author: Dmitry Smirnov <onlyjob@member.fsf.org>
 Forwarded: not-needed
 Description: correct location of config files in man pages
 
---- a/man/zabbix_agentd.man
-+++ b/man/zabbix_agentd.man
-@@ -21,7 +21,7 @@
+Index: zabbix-2.0.4/man/zabbix_agentd.man
+===================================================================
+--- zabbix-2.0.4.orig/man/zabbix_agentd.man
++++ zabbix-2.0.4/man/zabbix_agentd.man
+@@ -21,7 +21,7 @@ Display this help and exit.
  Output version information and exit.
  .SH FILES
  .TP
@@ -14,9 +16,11 @@ Description: correct location of config files in man pages
  Default location of Zabbix agent configuration file (if not modified during compile time).
  .SH "SEE ALSO"
  .BR zabbix_get (8),
---- a/man/zabbix_proxy.man
-+++ b/man/zabbix_proxy.man
-@@ -28,7 +28,7 @@
+Index: zabbix-2.0.4/man/zabbix_proxy.man
+===================================================================
+--- zabbix-2.0.4.orig/man/zabbix_proxy.man
++++ zabbix-2.0.4/man/zabbix_proxy.man
+@@ -28,7 +28,7 @@ Display this help and exit.
  Output version information and exit.
  .SH FILES
  .TP
@@ -25,9 +29,11 @@ Description: correct location of config files in man pages
  Default location of Zabbix proxy configuration file (if not modified during compile time).
  .SH "SEE ALSO"
  .BR zabbix_agentd (8),
---- a/man/zabbix_server.man
-+++ b/man/zabbix_server.man
-@@ -30,7 +30,7 @@
+Index: zabbix-2.0.4/man/zabbix_server.man
+===================================================================
+--- zabbix-2.0.4.orig/man/zabbix_server.man
++++ zabbix-2.0.4/man/zabbix_server.man
+@@ -30,7 +30,7 @@ Display this help and exit.
  Output version information and exit.
  .SH FILES
  .TP
@@ -36,9 +42,11 @@ Description: correct location of config files in man pages
  Default location of Zabbix server configuration file (if not modified during compile time).
  .SH "SEE ALSO"
  .BR zabbix_agentd (8),
---- a/man/zabbix_sender.man
-+++ b/man/zabbix_sender.man
-@@ -39,7 +39,7 @@
+Index: zabbix-2.0.4/man/zabbix_sender.man
+===================================================================
+--- zabbix-2.0.4.orig/man/zabbix_sender.man
++++ zabbix-2.0.4/man/zabbix_sender.man
+@@ -39,7 +39,7 @@ Display this help and exit.
  .IP "-V, --version"
  Output version information and exit.
  .SH "EXAMPLES"
@@ -47,7 +55,7 @@ Description: correct location of config files in man pages
  
  Send \fB342.45\fR as the value for \fBmysql.queries\fR key in \fBMonitored Host\fR host using Zabbix server defined in agent daemon configuration file.
  
-@@ -47,7 +47,7 @@
+@@ -47,7 +47,7 @@ Send \fB342.45\fR as the value for \fBmy
  
  Send values from file \fBdata_values.txt\fR to server with IP \fB192.168.1.113\fR. Host names and keys are defined in the file.
  

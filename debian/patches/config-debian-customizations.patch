@@ -3,8 +3,10 @@ Author: Christoph Haas <haas@debian.org>
 Forwarded: not-needed
 Description: Change default paths and settings in config files specifically for Debian
 
---- a/conf/zabbix_agentd.conf
-+++ b/conf/zabbix_agentd.conf
+Index: zabbix-2.0.4/conf/zabbix_agentd.conf
+===================================================================
+--- zabbix-2.0.4.orig/conf/zabbix_agentd.conf
++++ zabbix-2.0.4/conf/zabbix_agentd.conf
 @@ -10,6 +10,8 @@
  # Default:
  # PidFile=/tmp/zabbix_agentd.pid
@@ -23,7 +25,7 @@ Description: Change default paths and settings in config files specifically for 
  
  ### Option: LogFileSize
  #	Maximum size of log file in MB.
-@@ -29,6 +31,8 @@
+@@ -29,6 +31,8 @@ LogFile=/tmp/zabbix_agentd.log
  # Default:
  # LogFileSize=1
  
@@ -32,7 +34,7 @@ Description: Change default paths and settings in config files specifically for 
  ### Option: DebugLevel
  #	Specifies debug level
  #	0 - no debug
-@@ -206,14 +210,15 @@
+@@ -206,14 +210,15 @@ Hostname=Zabbix server
  
  ### Option: Include
  #	You may include individual files or all files in a directory in the configuration file.
@@ -51,9 +53,11 @@ Description: Change default paths and settings in config files specifically for 
  
  ####### USER-DEFINED MONITORED PARAMETERS #######
  
---- a/conf/zabbix_proxy.conf
-+++ b/conf/zabbix_proxy.conf
-@@ -74,7 +74,7 @@
+Index: zabbix-2.0.4/conf/zabbix_proxy.conf
+===================================================================
+--- zabbix-2.0.4.orig/conf/zabbix_proxy.conf
++++ zabbix-2.0.4/conf/zabbix_proxy.conf
+@@ -74,7 +74,7 @@ Hostname=Zabbix proxy
  # Default:
  # LogFile=
  
@@ -62,7 +66,7 @@ Description: Change default paths and settings in config files specifically for 
  
  ### Option: LogFileSize
  #	Maximum size of log file in MB.
-@@ -137,7 +137,7 @@
+@@ -137,7 +137,7 @@ DBName=zabbix
  # Default:
  # DBUser=
  
@@ -71,7 +75,7 @@ Description: Change default paths and settings in config files specifically for 
  
  ### Option: DBPassword
  #	Database password. Ignored for SQLite.
-@@ -407,6 +407,7 @@
+@@ -408,6 +408,7 @@ DBUser=root
  # Mandatory: no
  # Default:
  # FpingLocation=/usr/sbin/fping
@@ -79,7 +83,7 @@ Description: Change default paths and settings in config files specifically for 
  
  ### Option: Fping6Location
  #	Location of fping6.
-@@ -416,6 +417,7 @@
+@@ -417,6 +418,7 @@ DBUser=root
  # Mandatory: no
  # Default:
  # Fping6Location=/usr/sbin/fping6
@@ -87,7 +91,7 @@ Description: Change default paths and settings in config files specifically for 
  
  ### Option: SSHKeyLocation
  #	Location of public and private keys for SSH checks and actions
-@@ -442,11 +444,11 @@
+@@ -443,11 +445,11 @@ DBUser=root
  
  ### Option: Include
  #	You may include individual files or all files in a directory in the configuration file.
@@ -102,8 +106,10 @@ Description: Change default paths and settings in config files specifically for 
 -# Include=/usr/local/etc/zabbix_proxy.conf.d/
 +# Include=/etc/zabbix/zabbix_proxy.general.conf
 +# Include=/etc/zabbix/zabbix_proxy.conf.d/
---- a/conf/zabbix_server.conf
-+++ b/conf/zabbix_server.conf
+Index: zabbix-2.0.4/conf/zabbix_server.conf
+===================================================================
+--- zabbix-2.0.4.orig/conf/zabbix_server.conf
++++ zabbix-2.0.4/conf/zabbix_server.conf
 @@ -36,7 +36,7 @@
  # Default:
  # LogFile=
@@ -113,7 +119,7 @@ Description: Change default paths and settings in config files specifically for 
  
  ### Option: LogFileSize
  #	Maximum size of log file in MB.
-@@ -67,6 +67,8 @@
+@@ -67,6 +67,8 @@ LogFile=/tmp/zabbix_server.log
  # Default:
  # PidFile=/tmp/zabbix_server.pid
  
@@ -122,7 +128,7 @@ Description: Change default paths and settings in config files specifically for 
  ### Option: DBHost
  #	Database host name.
  #	If set to localhost, socket is used for MySQL.
-@@ -79,6 +81,8 @@
+@@ -79,6 +81,8 @@ LogFile=/tmp/zabbix_server.log
  ### Option: DBName
  #	Database name.
  #	For SQLite3 path to database file must be provided. DBUser and DBPassword are ignored.
@@ -131,7 +137,7 @@ Description: Change default paths and settings in config files specifically for 
  #
  # Mandatory: yes
  # Default:
-@@ -100,7 +104,7 @@
+@@ -100,7 +104,7 @@ DBName=zabbix
  # Default:
  # DBUser=
  
@@ -140,7 +146,7 @@ Description: Change default paths and settings in config files specifically for 
  
  ### Option: DBPassword
  #	Database password. Ignored for SQLite.
-@@ -389,6 +393,8 @@
+@@ -391,6 +395,8 @@ DBUser=root
  # Default:
  # AlertScriptsPath=${datadir}/zabbix/alertscripts
  
@@ -149,7 +155,7 @@ Description: Change default paths and settings in config files specifically for 
  ### Option: ExternalScripts
  #	Full path to location of external scripts.
  #	Default depends on compilation options.
-@@ -405,6 +411,8 @@
+@@ -407,6 +413,8 @@ DBUser=root
  # Default:
  # FpingLocation=/usr/sbin/fping
  
@@ -158,7 +164,7 @@ Description: Change default paths and settings in config files specifically for 
  ### Option: Fping6Location
  #	Location of fping6.
  #	Make sure that fping6 binary has root ownership and SUID flag set.
-@@ -414,6 +422,8 @@
+@@ -416,6 +424,8 @@ DBUser=root
  # Default:
  # Fping6Location=/usr/sbin/fping6
  
@@ -167,7 +173,7 @@ Description: Change default paths and settings in config files specifically for 
  ### Option: SSHKeyLocation
  #	Location of public and private keys for SSH checks and actions
  #
-@@ -439,14 +449,14 @@
+@@ -441,14 +451,14 @@ DBUser=root
  
  ### Option: Include
  #	You may include individual files or all files in a directory in the configuration file.
@@ -185,8 +191,10 @@ Description: Change default paths and settings in config files specifically for 
  
  ### Option: StartProxyPollers
  #	Number of pre-forked instances of pollers for passive proxies.
---- a/frontends/php/conf/zabbix.conf.php.example
-+++ b/frontends/php/conf/zabbix.conf.php.example
+Index: zabbix-2.0.4/frontends/php/conf/zabbix.conf.php.example
+===================================================================
+--- zabbix-2.0.4.orig/frontends/php/conf/zabbix.conf.php.example
++++ zabbix-2.0.4/frontends/php/conf/zabbix.conf.php.example
 @@ -2,16 +2,19 @@
  // Zabbix GUI configuration file
  global $DB;

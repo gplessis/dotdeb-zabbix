@@ -6,10 +6,11 @@ Description: fix columns sorting and pagination in frontend-php
  Problem is manifesting with nginx/php-fpm
  or with Apache/mod_proxy.
 
---- a/frontends/php/include/func.inc.php
-+++ b/frontends/php/include/func.inc.php
-@@ -1529,9 +1529,9 @@
- 	if ($page['type'] != PAGE_TYPE_HTML && defined('ZBX_PAGE_MAIN_HAT')) {
+Index: zabbix-2.0.4/frontends/php/include/func.inc.php
+===================================================================
+--- zabbix-2.0.4.orig/frontends/php/include/func.inc.php
++++ zabbix-2.0.4/frontends/php/include/func.inc.php
+@@ -1538,7 +1538,7 @@ function make_sorting_header($obj, $tabf
  		$script = "javascript: return updater.onetime_update('".ZBX_PAGE_MAIN_HAT."', '".$url."');";
  	}
  	else {
@@ -18,9 +19,7 @@ Description: fix columns sorting and pagination in frontend-php
  	}
  
  	zbx_value2array($obj);
- 	$cont = new CSpan();
-@@ -1629,15 +1629,15 @@
- 	if ($pagesCount > 1) {
+@@ -1638,13 +1638,13 @@ function getPagingLine(&$items) {
  		$url = new Curl();
  		if ($startPage > 1) {
  			$url->setArgument('page', 1);
@@ -36,9 +35,7 @@ Description: fix columns sorting and pagination in frontend-php
  			$pageline[] = ' | ';
  		}
  
- 		for ($p = $startPage; $p <= $pagesCount; $p++) {
-@@ -1649,9 +1649,9 @@
- 				$pagespan = new CSpan($p, 'bold textcolorstyles');
+@@ -1658,7 +1658,7 @@ function getPagingLine(&$items) {
  			}
  			else {
  				$url->setArgument('page', $p);
@@ -47,9 +44,7 @@ Description: fix columns sorting and pagination in frontend-php
  			}
  
  			$pageline[] = $pagespan;
- 			$pageline[] = ' | ';
-@@ -1662,16 +1662,16 @@
- 		if ($currentPage < $pagesCount) {
+@@ -1671,14 +1671,14 @@ function getPagingLine(&$items) {
  			$pageline[] = ' | ';
  
  			$url->setArgument('page', $currentPage + 1);
@@ -66,4 +61,3 @@ Description: fix columns sorting and pagination in frontend-php
  		}
  
  		$table = new CTable(null, 'paging');
- 		$table->addRow(new CCol($pageline));

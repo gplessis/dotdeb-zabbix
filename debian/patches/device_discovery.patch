@@ -1,7 +1,7 @@
-Index: zabbix-2.0.3/src/libs/zbxsysinfo/linux/diskspace.c
+Index: zabbix-2.0.4/src/libs/zbxsysinfo/linux/diskspace.c
 ===================================================================
---- zabbix-2.0.3.orig/src/libs/zbxsysinfo/linux/diskspace.c
-+++ zabbix-2.0.3/src/libs/zbxsysinfo/linux/diskspace.c
+--- zabbix-2.0.4.orig/src/libs/zbxsysinfo/linux/diskspace.c
++++ zabbix-2.0.4/src/libs/zbxsysinfo/linux/diskspace.c
 @@ -117,6 +117,8 @@ int	VFS_FS_DISCOVERY(const char *cmd, co
  			if (NULL == (p = strchr(line, ' ')))
  				continue;

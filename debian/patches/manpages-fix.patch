@@ -4,23 +4,27 @@ Forwarded: 2012-06-12
 Bug-Zabbix: https://support.zabbix.com/browse/ZBX-5166
 Description: fix minor errors in man pages
 
---- a/man/zabbix_get.man
-+++ b/man/zabbix_get.man
+Index: zabbix-2.0.4/man/zabbix_get.man
+===================================================================
+--- zabbix-2.0.4.orig/man/zabbix_get.man
++++ zabbix-2.0.4/man/zabbix_get.man
 @@ -1,4 +1,4 @@
 -.TH ZABBIX_GET 8 "5 July 2011"
 +.TH ZABBIX_GET 1 "5 July 2011"
  .SH NAME
  zabbix_get \- Zabbix get utility.
  .SH SYNOPSIS
---- a/man/zabbix_sender.man
-+++ b/man/zabbix_sender.man
+Index: zabbix-2.0.4/man/zabbix_sender.man
+===================================================================
+--- zabbix-2.0.4.orig/man/zabbix_sender.man
++++ zabbix-2.0.4/man/zabbix_sender.man
 @@ -1,4 +1,4 @@
 -.TH ZABBIX_SENDER 8 "10 November 2011"
 +.TH ZABBIX_SENDER 1 "10 November 2011"
  .if n .ad l
  .SH NAME
  zabbix_sender \- Zabbix sender utility.
-@@ -33,7 +33,7 @@
+@@ -33,7 +33,7 @@ If target item has triggers referencing 
  .IP "-r, --real-time"
  Send values one by one as soon as they are received. This can be used when reading from standard input.
  .IP "-v, --verbose"

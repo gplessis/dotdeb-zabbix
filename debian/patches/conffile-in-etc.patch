@@ -2,9 +2,11 @@ Last-Update: 2012-08-05
 Author: Christoph Haas <haas@debian.org>
 Description: Make Zabbix put its generated config file into /etc/zabbix
 
---- a/frontends/php/include/config.inc.php
-+++ b/frontends/php/include/config.inc.php
-@@ -64,8 +64,8 @@
+Index: zabbix-2.0.4/frontends/php/include/config.inc.php
+===================================================================
+--- zabbix-2.0.4.orig/frontends/php/include/config.inc.php
++++ zabbix-2.0.4/frontends/php/include/config.inc.php
+@@ -64,8 +64,8 @@ $USER_DETAILS = array();
  $USER_RIGHTS = array();
  $ZBX_LOCALNODEID = 0;
  $ZBX_LOCMASTERID = 0;
