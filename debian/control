@@ -40,8 +40,8 @@ Description: network monitoring solution - agent
 
 Package: zabbix-frontend-php
 Architecture: all
-Depends: ${misc:Depends}, ucf, apache2 | httpd, php5, php5-mysql | php5-pgsql | php5-sqlite, php5-gd, ttf-dejavu-core
-Suggests: libapache2-mod-php5 | php5-fpm, php5-pgsql | php5-mysql
+Depends: ${misc:Depends}, ucf, apache2 | httpd, php5, php5-mysql | php5-mysqlnd | php5-pgsql | php5-sqlite, php5-gd, ttf-dejavu-core
+Suggests: libapache2-mod-php5 | php5-fpm, php5-pgsql | php5-mysql | php5-mysqlnd
 Description: network monitoring solution - PHP front-end
  Zabbix is a server/client network monitoring system with many features.
  It can be used for:
