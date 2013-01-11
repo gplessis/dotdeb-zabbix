@@ -34,6 +34,12 @@ Index: zabbix-2.0.4/conf/zabbix_agentd.conf
  ### Option: DebugLevel
  #	Specifies debug level
  #	0 - no debug
+@@ -135,4 +137,4 @@
+# Default:
+# Hostname=
+
+-Hostname=Zabbix server
++#Hostname=Zabbix server
 @@ -206,14 +210,15 @@ Hostname=Zabbix server
  
  ### Option: Include
