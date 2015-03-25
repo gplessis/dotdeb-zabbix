@@ -1,0 +1,34 @@
+Installing the database
+-----------------------
+
+The Zabbix proxy needs an SQL database to run. As you chose to install
+this zabbix-proxy-mysql package you apparently want to use a MySQL server
+as a storage backend.
+
+Set up a MySQL database proxy on any system - you are not forced to run it
+on the same computer as the Zabbix proxy:
+
+-> apt-get install mysql-server
+
+Create a new database (let's call it "zabbix"):
+
+-> mysql -p -e "create database zabbix character set utf8"
+
+Create a MySQL user that has access rights to the database
+(please use another password than 'SECRETPASSWORD'):
+
+-> mysql -p -e "grant all on zabbix.* to 'zabbix'@'localhost' identified by 'SECRETPASSWORD'"
+
+Create the database schema:
+
+-> zcat /usr/share/zabbix-proxy-mysql/schema.sql.gz \
+   | mysql -uzabbix -pSECRETPASSWORD zabbix
+
+Now enter the database access credentials into your
+/etc/zabbix/zabbix_proxy.conf, enable the startup in the
+/etc/default/zabbix-proxy-mysql file and start the Zabbix proxy.
+
+
+See also:
+http://www.zabbix.com/documentation/2.0/manual/appendix/install/db_scripts
+

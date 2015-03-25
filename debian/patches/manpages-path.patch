@@ -1,0 +1,66 @@
+Last-Update: 2014-02-13
+Forwarded: not-needed
+Author: Dmitry Smirnov <onlyjob@member.fsf.org>
+Description: correct location of config files in man pages
+
+Index: dotdeb-zabbix/man/zabbix_agentd.man
+===================================================================
+--- dotdeb-zabbix.orig/man/zabbix_agentd.man
++++ dotdeb-zabbix/man/zabbix_agentd.man
+@@ -56,7 +56,7 @@ Display this help and exit.
+ Output version information and exit.
+ .SH FILES
+ .TP
+-.I /usr/local/etc/zabbix_agentd.conf
++.I /etc/zabbix/zabbix_agentd.conf
+ Default location of Zabbix agent configuration file (if not modified during compile time).
+ .SH "SEE ALSO"
+ .BR zabbix_get (8),
+Index: dotdeb-zabbix/man/zabbix_proxy.man
+===================================================================
+--- dotdeb-zabbix.orig/man/zabbix_proxy.man
++++ dotdeb-zabbix/man/zabbix_proxy.man
+@@ -28,7 +28,7 @@ Display this help and exit.
+ Output version information and exit.
+ .SH FILES
+ .TP
+-.I /usr/local/etc/zabbix_proxy.conf
++.I /etc/zabbix/zabbix_proxy.conf
+ Default location of Zabbix proxy configuration file (if not modified during compile time).
+ .SH "SEE ALSO"
+ .BR zabbix_agentd (8),
+Index: dotdeb-zabbix/man/zabbix_server.man
+===================================================================
+--- dotdeb-zabbix.orig/man/zabbix_server.man
++++ dotdeb-zabbix/man/zabbix_server.man
+@@ -30,7 +30,7 @@ Display this help and exit.
+ Output version information and exit.
+ .SH FILES
+ .TP
+-.I /usr/local/etc/zabbix_server.conf
++.I /etc/zabbix/zabbix_server.conf
+ Default location of Zabbix server configuration file (if not modified during compile time).
+ .SH "SEE ALSO"
+ .BR zabbix_agentd (8),
+Index: dotdeb-zabbix/man/zabbix_sender.man
+===================================================================
+--- dotdeb-zabbix.orig/man/zabbix_sender.man
++++ dotdeb-zabbix/man/zabbix_sender.man
+@@ -45,7 +45,7 @@ If data was sent, but processing of at l
+ If data sending failed, the exit status is 1.
+ 
+ .SH "EXAMPLES"
+-.B zabbix_sender -c /usr/local/etc/zabbix_agentd.conf -s """Monitored Host""" -k mysql.queries -o 342.45
++.B zabbix_sender -c /etc/zabbix/zabbix_agentd.conf -s """Monitored Host""" -k mysql.queries -o 342.45
+ 
+ Send \fB342.45\fR as the value for \fBmysql.queries\fR key in \fBMonitored Host\fR host using Zabbix server defined in agent daemon configuration file.
+ 
+@@ -53,7 +53,7 @@ Send \fB342.45\fR as the value for \fBmy
+ 
+ Send values from file \fBdata_values.txt\fR to server with IP \fB192.168.1.113\fR. Host names and keys are defined in the file.
+ 
+-.B echo """- hw.serial.number 1287872261 SQ4321ASDF""" | zabbix_sender -c /usr/local/etc/zabbix_agentd.conf -T -i -
++.B echo """- hw.serial.number 1287872261 SQ4321ASDF""" | zabbix_sender -c /etc/zabbix/zabbix_agentd.conf -T -i -
+ 
+ Send a timestamped value from the commandline to Zabbix server, specified in the agent daemon configuration file. Dash in the input data indicates that hostname also should be used from the same configuration file.
+ 

@@ -1,0 +1,191 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Zabbix
+Upstream-Contact: Alexei Vladishev <alexei.vladishev@zabbix.com>
+Source: http://www.zabbix.com/download.php
+Copyright: 2000-2013 Zabbix SIA
+License: GPL-2+
+Comment:
+ This package was debianized by Michael Ablassmeier <abi@debian.org>
+ on Tue, 23 Mar 2004 22:46:45 +0100.
+
+Files: debian/*
+Copyright: 2009-2012 Christoph Haas <haas@debian.org>
+           2012-2013 Dmitry Smirnov <onlyjob@debian.org>
+           2006-2009 Fabio Tranchitella <kobold@debian.org>
+           2006-2011 Michael Ablassmeier <abi@debian.org>
+License: GPL-2+
+
+Files: *
+Copyright: 2000-2014 Zabbix SIA
+License: GPL-2+
+Comment:
+ Author: Alexei Vladishev <alexei.vladishev@zabbix.com>
+
+Files: src/libs/zbxregexp/gnuregex.c
+       include/zbxgetopt.h
+       src/libs/zbxcommon/zbxgetopt.c
+       src/libs/zbxcommon/gnuregex.c
+Copyright: 1985,1987,1988-1993 Free Software Foundation, Inc
+License: GPL-2+
+
+Files: include/md5.h src/libs/zbxcrypto/md5.c
+Copyright: 1999,2000,2002 Aladdin Enterprises. All rights reserved
+License:
+ This software is provided 'as-is', without any express or implied
+ warranty.  In no event will the authors be held liable for any damages
+ arising from the use of this software.
+ .
+ Permission is granted to anyone to use this software for any purpose,
+ including commercial applications, and to alter it and redistribute it
+ freely, subject to the following restrictions:
+ .
+ 1. The origin of this software must not be misrepresented; you must not
+    claim that you wrote the original software. If you use this software
+    in a product, an acknowledgment in the product documentation would be
+    appreciated but is not required.
+ 2. Altered source versions must be plainly marked as such, and must not be
+    misrepresented as being the original software.
+ 3. This notice may not be removed or altered from any source distribution.
+ .
+ L. Peter Deutsch
+ ghost@aladdin.com
+
+Files: src/libs/zbxcommon/str.c
+Copyright: 2000-2013 Zabbix SIA
+License: GPL-2+
+Comment: with portions
+ Copyright: 1998 Todd C. Miller <Todd.Miller@courtesan.com>
+ License:
+  Permission to use, copy, modify, and distribute this software for any
+  purpose with or without fee is hereby granted, provided that the above
+  copyright notice and this permission notice appear in all copies.
+  .
+  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+Files: misc/init.d/suse/*
+Copyright: 2004 A.Tophofen
+License: GPL-2+
+Comment: assuming the same license as for the whole application
+
+Files: frontend/php/js/prototype.js
+Copyright: (C) 2005-2010 Sam Stephenson <sam@conio.net>
+License: Expat
+
+Files: frontend/php/js/vendors/activity-indicator.js
+Copyright: 2010 NETEYE GmbH
+License: Expat
+Comment:
+ Minified; full source is in "debian/patches/missing-source".
+ Downloaded from "https://neteye.github.io/activity-indicator.html".
+ Bug-Zabbix: https://support.zabbix.com/browse/ZBX-8485
+
+Files: frontend/php/js/jquery/jquery.js
+Copyright: 2005-2011 John Resig, Brandon Aaron & Jörn Zaefferer
+License: GPL-2 or Expat
+Comment:
+ Minified; full source is in "debian/patches/missing-source".
+
+Files: frontend/php/js/jquery/jquery-ui.js
+Copyright: 2012-2013 jQuery Foundation and other contributors
+License: GPL-2 or Expat
+Comment:
+ Minified; full source is in "debian/patches/missing-source".
+
+Files: frontends/php/fonts/*.ttf
+Copyright: 2003 Bitstream, Inc. All Rights Reserved.
+ Bitstream Vera is a trademark of Bitstream, Inc.
+ DejaVu changes are in public domain.
+License:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of the fonts accompanying this license ("Fonts") and associated
+ documentation files (the "Font Software"), to reproduce and distribute the
+ Font Software, including without limitation the rights to use, copy, merge,
+ publish, distribute, and/or sell copies of the Font Software, and to permit
+ persons to whom the Font Software is furnished to do so, subject to the
+ following conditions:
+ .
+ The above copyright and trademark notices and this permission notice shall
+ be included in all copies of one or more of the Font Software typefaces.
+ .
+ The Font Software may be modified, altered, or added to, and in particular
+ the designs of glyphs or characters in the Fonts may be modified and
+ additional glyphs or characters may be added to the Fonts, only if the fonts
+ are renamed to names not containing either the words "Bitstream" or the word
+ "Vera".
+ .
+ This License becomes null and void to the extent applicable to Fonts or Font
+ Software that has been modified and is distributed under the "Bitstream
+ Vera" names.
+ .
+ The Font Software may be sold as part of a larger software package but no
+ copy of one or more of the Font Software typefaces may be sold by itself.
+ .
+ THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+ TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTREAM OR THE GNOME
+ FOUNDATION BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING
+ ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+ THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE
+ FONT SOFTWARE.
+ .
+ Except as contained in this notice, the names of Gnome, the Gnome
+ Foundation, and Bitstream Inc., shall not be used in advertising or
+ otherwise to promote the sale, use or other dealings in this Font Software
+ without prior written authorization from the Gnome Foundation or Bitstream
+ Inc., respectively. For further information, contact: fonts at gnome dot
+ org.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+Comment:
+ This license also known as "MIT/X11 (BSD like)" or "MIT" however FSF
+ consider "MIT" labelling ambiguous and copyright-format specification
+ recommend to label such license as "Expat".
+
+License: GPL-2
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 2 of the License.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ The complete text of the GNU General Public License version 2
+ can be found in `/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ The complete text of the GNU General Public License version 2
+ can be found in `/usr/share/common-licenses/GPL-2'.

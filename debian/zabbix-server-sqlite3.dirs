@@ -1,0 +1,4 @@
+etc/zabbix
+usr/share/zabbix-server-sqlite3
+var/lib/zabbix
+var/log/zabbix-server

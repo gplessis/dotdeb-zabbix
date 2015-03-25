@@ -1,0 +1,34 @@
+Last-Update: 2013-11-15
+Forwarded: 2012-03-22
+Author: Christoph Haas <haas@debian.org>
+Bug-Zabbix: https://support.zabbix.com/browse/ZBX-4794
+Description: removal of Flash clock that does not have its source code included
+
+Index: dotdeb-zabbix/frontends/php/api/classes/CScreenItem.php
+===================================================================
+--- dotdeb-zabbix.orig/frontends/php/api/classes/CScreenItem.php
++++ dotdeb-zabbix/frontends/php/api/classes/CScreenItem.php
+@@ -42,7 +42,8 @@ class CScreenItem extends CZBXAPI {
+ 		SCREEN_RESOURCE_HOSTS_INFO,
+ 		SCREEN_RESOURCE_TRIGGERS_INFO,
+ 		SCREEN_RESOURCE_SERVER_INFO,
+-		SCREEN_RESOURCE_CLOCK,
++		# Flash clock is not shipped with Debian as the source code is not available
++		#SCREEN_RESOURCE_CLOCK,
+ 		SCREEN_RESOURCE_SCREEN,
+ 		SCREEN_RESOURCE_TRIGGERS_OVERVIEW,
+ 		SCREEN_RESOURCE_DATA_OVERVIEW,
+Index: dotdeb-zabbix/frontends/php/include/screens.inc.php
+===================================================================
+--- dotdeb-zabbix.orig/frontends/php/include/screens.inc.php
++++ dotdeb-zabbix/frontends/php/include/screens.inc.php
+@@ -25,7 +25,8 @@ require_once dirname(__FILE__).'/js.inc.
+ 
+ function screen_resources($resource = null) {
+ 	$resources = array(
+-		SCREEN_RESOURCE_CLOCK => _('Clock'),
++		# Debian does not ship the Flash clock as the source code is not available
++		#SCREEN_RESOURCE_CLOCK => _('Clock'),
+ 		SCREEN_RESOURCE_DATA_OVERVIEW => _('Data overview'),
+ 		SCREEN_RESOURCE_GRAPH => _('Graph'),
+ 		SCREEN_RESOURCE_ACTIONS => _('History of actions'),

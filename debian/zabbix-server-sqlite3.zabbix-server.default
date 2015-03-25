@@ -1,0 +1,13 @@
+# defaults file for zabbix-server-sqlite3
+
+# Start the Zabbix server from the init.d script?
+# (Possible values: "yes" or "no")
+#
+# This is by default set to "no" because a SQLite3 database needs to be
+# prepared and configured before you can start the Zabbix server for the first
+# time.
+#
+# Instructions on how to set up the database can be found in
+# /usr/share/doc/zabbix-server-sqlite3/README.Debian
+START=no
+

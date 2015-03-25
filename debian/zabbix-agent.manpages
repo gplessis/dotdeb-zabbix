@@ -1,0 +1,3 @@
+debian/manpages/zabbix_agent.1
+debian/tmp/usr/share/man/man1/zabbix_sender.1
+debian/tmp/usr/share/man/man8/zabbix_agentd.8

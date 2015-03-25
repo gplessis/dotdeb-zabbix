@@ -1,0 +1,6 @@
+etc/logrotate.d
+etc/zabbix
+etc/zabbix/alert.d
+usr/share/zabbix-server-pgsql
+var/log/zabbix-server
+

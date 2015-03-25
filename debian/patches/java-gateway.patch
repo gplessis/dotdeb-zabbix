@@ -1,0 +1,83 @@
+Last-Update: 2013-11-24
+Forwarded: not-needed
+Author: Dmitry Smirnov <onlyjob@member.fsf.org>
+Description: debianisation of zabbix-java-gateway
+
+Index: dotdeb-zabbix/src/zabbix_java/Makefile.am
+===================================================================
+--- dotdeb-zabbix.orig/src/zabbix_java/Makefile.am
++++ dotdeb-zabbix/src/zabbix_java/Makefile.am
+@@ -9,9 +9,9 @@ EXTRA_DIST = \
+ 	shutdown.sh \
+ 	startup.sh
+ 
+-ZJG = bin/zabbix-java-gateway-$(VERSION).jar
+-LIB = lib/android-json-4.3_r3.1.jar:lib/logback-core-0.9.27.jar:lib/logback-classic-0.9.27.jar:lib/slf4j-api-1.6.1.jar
+-JUNIT = tests/junit-4.8.2.jar
++ZJG = zabbix-java-gateway.jar
++LIB = /usr/share/java/json.jar:/usr/share/java/logback-core.jar:/usr/share/java/logback-classic.jar:/usr/share/java/slf4j-api.jar
++JUNIT = /usr/share/java/junit4.jar
+ 
+ ZJG_DEST = $(DESTDIR)$(sbindir)/zabbix_java
+ 
+Index: dotdeb-zabbix/src/zabbix_java/settings.sh
+===================================================================
+--- dotdeb-zabbix.orig/src/zabbix_java/settings.sh
++++ dotdeb-zabbix/src/zabbix_java/settings.sh
+@@ -1,5 +1,5 @@
+ # This is a configuration file for Zabbix Java Gateway.
+-# It is sourced by startup.sh and shutdown.sh scripts.
++# It is sourced by "/etc/init.d/zabbix-java-gateway".
+ 
+ ### Option: zabbix.listenIP
+ #	IP address to listen on.
+@@ -18,13 +18,11 @@
+ 
+ ### Option: zabbix.pidFile
+ #	Name of PID file.
+-#	If omitted, Zabbix Java Gateway is started as a console application.
+ #
+ # Mandatory: no
+ # Default:
+ # PID_FILE=
+-
+-PID_FILE="/tmp/zabbix_java.pid"
++# PID_FILE="/var/run/zabbix/zabbix_java_gateway.pid"
+ 
+ ### Option: zabbix.startPollers
+ #	Number of worker threads to start.
+@@ -33,3 +31,9 @@ PID_FILE="/tmp/zabbix_java.pid"
+ # Range: 1-1000
+ # Default:
+ # START_POLLERS=5
++
++### JVM options (passed to /usr/bin/java).
++#
++# Mandatory: no
++#
++# JAVA_OPTIONS="-Xmx256m"
+Index: dotdeb-zabbix/src/zabbix_java/lib/logback.xml
+===================================================================
+--- dotdeb-zabbix.orig/src/zabbix_java/lib/logback.xml
++++ dotdeb-zabbix/src/zabbix_java/lib/logback.xml
+@@ -2,16 +2,16 @@
+ 
+ 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+ 
+-		<file>/tmp/zabbix_java.log</file>
++		<file>/var/log/zabbix-java-gateway/zabbix_java_gateway.log</file>
+ 
+ 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+-			<fileNamePattern>/tmp/zabbix_java.log.%i</fileNamePattern>
++			<fileNamePattern>/var/log/zabbix-java-gateway/zabbix_java_gateway.log.%i.gz</fileNamePattern>
+ 			<minIndex>1</minIndex>
+-			<maxIndex>3</maxIndex>
++			<maxIndex>5</maxIndex>
+ 		</rollingPolicy>
+ 
+ 		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+-			<maxFileSize>5MB</maxFileSize>
++			<maxFileSize>10MB</maxFileSize>
+ 		</triggeringPolicy>
+ 
+ 		<encoder>

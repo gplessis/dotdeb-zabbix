@@ -1,0 +1,77 @@
+Configuring Zabbix server for use with Java gateway
+---------------------------------------------------
+
+Zabbix server need to be configured for zabbix-java-gateway.
+In the "/etc/zabbix/zabbix_server.conf" make sure to
+edit the following keys:
+
+    JavaGateway
+    JavaGatewayPort     # if port is not 10052
+    StartJavaPollers
+
+In frontend add JMX interface with port of a monitored
+Java/JMX service, it is NOT a port 10052.
+
+
+Debugging Java gateway
+----------------------
+
+In case there are any problems with Java gateway or an error message
+that you see about an item in the frontend is not descriptive enough,
+you might wish to increase logging verbosity. This can be done by
+by replacing
+
+    <root level="info">
+
+with
+
+    <root level="debug">
+
+in "/etc/zabbix/zabbix_java_gateway.logback.xml".
+
+Note that unlike Zabbix server or Zabbix proxy, there is no need to restart
+Zabbix Java gateway after changing logback.xml file - changes in
+logback.xml will be picked up automatically. When you are done
+with debugging, you can return the logging level to "info".
+
+
+Configuring monitored host
+--------------------------
+
+Use "Template_JMX_Generic" or "Template_JMX_Tomcat".
+
+Sample key:
+
+    jmx["java.lang:type=Memory","HeapMemoryUsage.used"]
+
+Read more:
+
+    https://www.zabbix.com/documentation/2.2/manual/config/items/itemtypes/jmx_monitoring
+
+
+Monitoring Java applications
+----------------------------
+
+As a bare minimum, if you just wish to get started by monitoring a simple
+Java application on a local host with no security enforced, start it with
+these options:
+
+~~~~
+java \
+-Dcom.sun.management.jmxremote \
+-Dcom.sun.management.jmxremote.port=12345 \
+-Dcom.sun.management.jmxremote.authenticate=false \
+-Dcom.sun.management.jmxremote.ssl=false \
+-jar /usr/share/doc/openjdk-7-jre-headless/demo/jfc/Notepad/Notepad.jar
+~~~~
+
+This makes Java listen for incoming JMX connections on
+port 12345 and tells it not to require authentication or SSL.
+
+Note: "Notepad.jar" is proveded by "openjdk-7-demo" package.
+
+Read more about JMX monitoring and management:
+
+    http://docs.oracle.com/javase/1.5.0/docs/guide/management/agent.html
+    http://docs.oracle.com/javase/6/docs/technotes/guides/jmx/
+

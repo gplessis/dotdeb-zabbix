@@ -1,0 +1,27 @@
+Installing the database
+-----------------------
+
+The Zabbix proxy needs an SQL database to run. As you chose to install
+this zabbix-proxy-sqlite3 package you apparently want to use a SQLite3
+database as a storage backend.
+
+Create a new SQLite database with the necessary database schema:
+
+-> zcat /usr/share/zabbix-proxy-sqlite3/schema.sql.gz | \
+   sqlite3 /var/lib/zabbix/zabbix.db
+
+Change the owner of the database to the "zabbix" user and group:
+
+-> chown zabbix:zabbix /var/lib/zabbix/zabbix.db
+
+Set the path to your SQLite3 database in the /etc/zabbix/zabbix_proxy.conf
+configuration file:
+
+-> DBName=/var/lib/zabbix/zabbix.db
+
+Enable the startup in the /etc/default/zabbix-proxy file and start the Zabbix
+proxy.
+
+See also:
+http://www.zabbix.com/documentation/2.0/manual/appendix/install/db_scripts
+

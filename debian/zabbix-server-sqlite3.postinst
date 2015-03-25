@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set -e
+
+# If /tmp/ZABBIX_PACKAGE_DEBUG file exists then enable debugging of this script.
+#if [ -e /tmp/ZABBIX_PACKAGE_DEBUG ]; then
+#    set -x
+#fi
+
+if [ "$1" = "configure" ]; then
+    if ! getent group zabbix > /dev/null 2>&1 ; then
+        addgroup --system --quiet zabbix
+    fi
+
+    # Does the user 'zabbix' exist?
+    #
+    # (No need to move the zabbix user's home directory as done in the
+    # *-mysql and *-pgsql packages because the *-sqlite3 packages were
+    # introduced in 1.8.6-1 which did not have the bug #593458 with the
+    # wrong home directory.)
+    if ! getent passwd zabbix > /dev/null 2>&1 ; then
+        # Not yet. Create it.
+        adduser --quiet \
+            --system --disabled-login --ingroup zabbix \
+            --home /var/run/zabbix/ --no-create-home \
+            zabbix
+    fi
+
+    chown -R zabbix:zabbix /var/log/zabbix-server
+    chown -R zabbix:www-data /var/lib/zabbix
+
+    # workaround for "php_sem_get(): failed for key 0x7a000783: [13] Permission denied"
+    # see https://support.zabbix.com/browse/ZBX-5259
+    adduser zabbix www-data
+fi
+
+#DEBHELPER#

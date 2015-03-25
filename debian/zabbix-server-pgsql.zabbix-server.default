@@ -1,0 +1,13 @@
+# defaults file for zabbix-server-pgsql
+
+# Start the Zabbix server from the init.d script?
+# (Possible values: "yes" or "no")
+#
+# This is by default set to "no" because a PostgreSQL database needs to be
+# prepared and configured before you can start the Zabbix server for the first
+# time.
+#
+# Instructions on how to set up the database can be found in
+# /usr/share/doc/zabbix-server-pgsql/README.Debian
+START=no
+

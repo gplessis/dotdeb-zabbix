@@ -1,0 +1,4 @@
+usr/sbin/zabbix-java-gateway.jar:
+ Main-Class: com.zabbix.gateway.JavaGateway
+ Class-Path: /usr/share/java/json.jar /usr/share/java/logback-core.jar /usr/share/java/logback-classic.jar /usr/share/java/slf4j-api.jar
+ Debian-Java-Parameters: -server -Dlogback.configurationFile=/etc/zabbix/zabbix_java_gateway.logback.xml

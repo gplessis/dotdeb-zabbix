@@ -1,0 +1,21 @@
+Index: dotdeb-zabbix/src/libs/zbxsysinfo/linux/diskspace.c
+===================================================================
+--- dotdeb-zabbix.orig/src/libs/zbxsysinfo/linux/diskspace.c
++++ dotdeb-zabbix/src/libs/zbxsysinfo/linux/diskspace.c
+@@ -111,6 +111,8 @@ int	VFS_FS_DISCOVERY(AGENT_REQUEST *requ
+ 			if (NULL == (p = strchr(line, ' ')))
+ 				continue;
+ 
++			*p = '\0';
++
+ 			mpoint = ++p;
+ 
+ 			if (NULL == (p = strchr(mpoint, ' ')))
+@@ -126,6 +128,7 @@ int	VFS_FS_DISCOVERY(AGENT_REQUEST *requ
+ 			*p = '\0';
+ 
+ 			zbx_json_addobject(&j, NULL);
++			zbx_json_addstring(&j, "{#DEVICE}", line, ZBX_JSON_TYPE_STRING);
+ 			zbx_json_addstring(&j, "{#FSNAME}", mpoint, ZBX_JSON_TYPE_STRING);
+ 			zbx_json_addstring(&j, "{#FSTYPE}", mtype, ZBX_JSON_TYPE_STRING);
+ 			zbx_json_close(&j);
