@@ -1,0 +1,3 @@
+etc/zabbix
+var/log/zabbix-proxy
+var/lib/zabbix

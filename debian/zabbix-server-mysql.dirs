@@ -1,0 +1,5 @@
+etc/logrotate.d
+etc/zabbix
+etc/zabbix/alert.d
+usr/share/zabbix-server-mysql
+var/log/zabbix-server

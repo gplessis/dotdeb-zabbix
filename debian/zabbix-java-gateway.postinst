@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -e
+
+# If /tmp/ZABBIX_PACKAGE_DEBUG file exists then enable debugging of this script.
+#if [ -e /tmp/ZABBIX_PACKAGE_DEBUG ]; then
+#    set -x
+#fi
+
+if [ "$1" = "configure" ]; then
+    if ! getent group zabbix > /dev/null 2>&1 ; then
+        addgroup --system --quiet zabbix
+    fi
+
+    # Does the user 'zabbix' exist?
+    if ! getent passwd zabbix > /dev/null 2>&1 ; then
+        # Not yet. Create it.
+        adduser --quiet \
+            --system --disabled-login --ingroup zabbix \
+            --home /var/run/zabbix/ --no-create-home \
+            zabbix
+    fi
+
+    chown zabbix:zabbix /var/log/zabbix-java-gateway -R
+fi
+
+#DEBHELPER#

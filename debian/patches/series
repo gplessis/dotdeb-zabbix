@@ -1,0 +1,7 @@
+config_debianisation.patch
+config_frontend-conffile-in-etc.patch
+java-gateway.patch
+manpages-fix.patch
+manpages-path.patch
+no-swf-clock.patch
+device_discovery.patch

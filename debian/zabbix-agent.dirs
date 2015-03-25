@@ -1,0 +1,5 @@
+etc/logrotate.d
+etc/zabbix
+etc/zabbix/zabbix_agentd.conf.d
+usr/share/zabbix-agent
+var/log/zabbix-agent

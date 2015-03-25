@@ -1,0 +1,72 @@
+.TH zabbix-java-gateway "1" "November 2013" "zabbix 2.2.0" "User Commands"
+.SH NAME
+zabbix-java-gateway.jar \- Zabbix Java/JMX monitoring agent.
+.SH USAGE
+/etc/init.d/zabbix-java-gateway [ start|stop|restart|status ]
+.SH DESCRIPTION
+"Zabbix Java gateway" is a daemon to collect information from JMX agent.
+When Zabbix server wants to know the value of a particular JMX counter on a
+host, it asks Zabbix Java gateway, which uses the JMX management API
+to query the application of interest remotely. The application
+does not need any additional software installed, it just has to be started
+with "\-Dcom.sun.management.jmxremote" option to Java on the command line.
+
+Java gateway accepts incoming connection from Zabbix server or proxy and
+can only be used as a "passive proxy". As opposed to Zabbix proxy,
+it may also be used from Zabbix proxy (Zabbix proxies cannot
+be chained). Access to each Java gateway is configured directly in
+Zabbix server or proxy configuration file, thus only one
+Java gateway may be configured per Zabbix server or Zabbix proxy. If a host
+will have items of type JMX agent and items of other type,
+only the JMX agent items will be passed to Java gateway for retrieval.
+
+When an item has to be updated over Java gateway, Zabbix server or proxy
+will connect to the Java gateway and request the value, which Java gateway
+in turn retrieves and passes back to the server or proxy. As such,
+Java gateway does not cache any values.
+
+Zabbix server or proxy has a specific type of processes that connect
+to Java gateway, controlled by the
+option "StartJavaPollers". Internally, Java gateway starts multiple threads,
+controlled by the START_POLLERS option. On the server side, if a connection
+takes more than Timeout seconds, it will be terminated, but Java gateway
+might still be busy retrieving value from the JMX counter.
+
+Zabbix server or proxy will try to pool requests to a single JMX
+target together as much as possible (affected by item intervals) and
+send them to the Java Gateway in a single connection for
+better performance.
+
+It is suggested to have "StartJavaPollers" less than or equal to
+START_POLLERS, otherwise there might be situations when no threads are
+available in the Java gateway to service incoming requests.
+
+.SH OPTIONS
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+Display version number.
+.SH JAVA OPTIONS
+zabbix-java-gateway.jar recognises the following Java options:
+.TP
+\fB-Dzabbix.pidFile\fR
+.TP
+\fB-Dlogback.configurationFile\fR
+Example: \-Dlogback.configurationFile=/etc/zabbix/logback.xml
+.TP
+\fB-Dzabbix.listenIP\fR
+.TP
+\fB-Dzabbix.listenPort\fR
+.TP
+\fB-Dzabbix.startPollers\fR
+.SH CONFIGURATON FILES
+.TP
+\fB/etc/zabbix/logback.xml\fR
+Logging configuration.
+.TP
+\fB/etc/zabbix/zabbix_java_gateway.conf\fR
+Miscellaneous parameters.
+.SH SEE ALSO
+.TP
+    <https://www.zabbix.com/documentation/2.2/manual/config/items/itemtypes/jmx_monitoring>
+.TP
+    <https://www.zabbix.com/documentation/2.2/manual/concepts/java>

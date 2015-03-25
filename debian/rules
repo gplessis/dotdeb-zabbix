@@ -1,0 +1,188 @@
+#!/usr/bin/make -f
+
+# Enable this export to get more detailed information about what debhelper does
+#export DH_VERBOSE=1
+
+## Define the names of the resulting binary packages
+PKG_AGENT = zabbix-agent
+PKG_FRONTEND = zabbix-frontend-php
+PKG_GATEWAY_JAVA = zabbix-java-gateway
+PKG_PROXY_MYSQL = zabbix-proxy-mysql
+PKG_PROXY_PGSQL = zabbix-proxy-pgsql
+PKG_PROXY_SQLITE3 = zabbix-proxy-sqlite3
+PKG_SERVER_MYSQL = zabbix-server-mysql
+PKG_SERVER_PGSQL = zabbix-server-pgsql
+PKG_SERVER_SQLITE3 = zabbix-server-sqlite3
+
+# parallel build by default on linux
+ifeq ($(DEB_HOST_ARCH_OS),linux)
+    ifeq ($(findstring parallel=,$(DEB_BUILD_OPTIONS)),)
+        export DEB_BUILD_OPTIONS+=parallel=$(shell getconf _NPROCESSORS_ONLN)
+    endif
+endif
+$(info DEB_BUILD_OPTIONS=$(DEB_BUILD_OPTIONS))
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+# Squeeze backporters: --export=configure is not available on Squeeze
+#DPKG_BUILDFLAGS := $(shell DEB_CFLAGS_MAINT_APPEND=-Wall dpkg-buildflags --export=configure)
+
+export DEB_BUILD_MAINT_OPTIONS=hardening=+all
+
+# minimise needless linking
+export DEB_LDFLAGS_MAINT_APPEND= -Wl,--as-needed
+
+CONFFLAGS_COMMON  = --host=$(DEB_HOST_GNU_TYPE) \
+                    --build=$(DEB_BUILD_GNU_TYPE) \
+                    --datadir=/etc \
+                    --sysconfdir=/etc/zabbix \
+                    --prefix=/usr \
+                    --infodir=\$${prefix}/share/info \
+                    --mandir=\$${prefix}/share/man \
+                    --enable-agent \
+                    --enable-proxy \
+                    --enable-server \
+                    --enable-ipv6 \
+                    --with-jabber \
+                    --with-ldap \
+                    --with-libcurl \
+                    --with-libxml2 \
+                    --with-net-snmp \
+                    --with-ssh2 \
+                    --with-unixodbc
+
+## Hurd and kFreeBSD only have Java 1.5 which can't compile java-gateway sources...
+#ifneq ($(DEB_BUILD_ARCH_OS),hurd)
+#ifneq ($(DEB_BUILD_ARCH_OS),kfreebsd)
+#CONFFLAGS_COMMON += --enable-java
+#endif
+#endif
+CONFFLAG_IPMI           = $(if $(shell dpkg --status libopenipmi-dev &>/dev/null),--with-openipmi)
+CONFFLAG_SERVER_MYSQL   = --with-mysql
+CONFFLAG_SERVER_PGSQL   = --with-postgresql
+CONFFLAG_SERVER_SQLITE3 = --with-sqlite3
+BUILD_PREFIX := $(CURDIR)/debian/tmp-build
+
+# The Zabbix sources are compiled once for each database backends (VARIANT).
+# The proxy and server packages always contain one kind of database support.
+# The zabbix-agent and zabbix-frontend-php package do not have any kind of
+# database support and are created from one of the above mentioned builds.
+VARIANTS := MYSQL PGSQL SQLITE3
+
+%:
+	dh $@ --parallel --max-parallel=4 --with autoreconf,javahelper
+
+override_dh_clean:
+	@echo "Removing build directories in $(BUILD_PREFIX)"
+	$(RM) -r debian/tmp* config.log
+	@echo "Removing sourceless (minified) bundled libraries..."
+	$(RM) -v frontends/php/js/jquery/jquery.js \
+                 frontends/php/js/jquery/jquery-ui.js \
+                 frontends/php/js/vendors/activity-indicator.js
+	dh_clean
+
+# use --as-needed only if supported by dh-autoreconf (to simplify backporting)
+DH_AS_NEEDED=$(shell dpkg --compare-versions $$(dpkg --status dh-autoreconf | grep Version | cut -d' ' -f2) ge 6 && echo --as-needed)
+override_dh_autoreconf:
+	@echo "Replacing sourceless (minified) bundled libraries..."
+	cp -vfH debian/patches/missing-source/jquery.js  frontends/php/js/jquery/jquery.js
+	cp -vfH debian/patches/missing-source/jquery-ui.js  frontends/php/js/jquery/jquery-ui.js
+	cp -vfH debian/patches/missing-source/activity-indicator.js  frontends/php/js/vendors/activity-indicator.js
+	dh_autoreconf $(DH_AS_NEEDED)
+	## Copy the source directory (without the 'debian' directory) to build locations
+	## to configure and compile the sources there for each database flavor.
+	for i in $(VARIANTS); do \
+		mkdir $(BUILD_PREFIX)-$$i ;\
+		tar -cSf - --exclude=./.svn --exclude=./debian . \
+		| tar -xSpf - -C $(BUILD_PREFIX)-$$i ;\
+	done
+
+override_dh_auto_configure:
+	$(foreach i,$(VARIANTS), \
+        dh_auto_configure --sourcedirectory=$(BUILD_PREFIX)-$i --max-parallel=4 -- \
+            $(CONFFLAGS_COMMON) $(CONFFLAG_IPMI) $(CONFFLAG_SERVER_$i) \
+    ;)
+
+override_dh_auto_build:
+	$(foreach i,$(VARIANTS), \
+        dh_auto_build --sourcedirectory=$(BUILD_PREFIX)-$i --max-parallel=4 \
+    ;)
+
+build-indep:
+	## build zabbix-java-gateway.jar
+	## override_jh_build:
+	JAVA_HOME=/usr/lib/jvm/default-java \
+        CLASSPATH=/usr/share/java/json.jar:/usr/share/java/logback-core.jar:/usr/share/java/logback-classic.jar:/usr/share/java/slf4j-api.jar \
+        jh_build --no-javadoc --main=com.zabbix.gateway.JavaGateway debian/tmp-build-MYSQL/src/zabbix_java/zabbix-java-gateway.jar src/zabbix_java/src/com
+
+override_dh_auto_install:
+	## build man pages
+	dh_auto_install --sourcedirectory=$(BUILD_PREFIX)-MYSQL/man \
+          --destdir=$(CURDIR)/debian/tmp
+
+override_dh_install:
+	dh_install
+	for i in debian/zabbix-*-*; do \
+	    find $$i -type f -name '*.sql' -printf 'compressing %p\n' \
+	        -exec gzip -9 '{}' \;;\
+	done
+	## Those files need to be renamed:
+	if [ -d "$(CURDIR)/debian/$(PKG_GATEWAY_JAVA)" ]; then \
+            cp -v src/zabbix_java/lib/logback.xml  $(CURDIR)/debian/$(PKG_GATEWAY_JAVA)/etc/zabbix/zabbix_java_gateway.logback.xml ;\
+            cp -v src/zabbix_java/settings.sh  $(CURDIR)/debian/$(PKG_GATEWAY_JAVA)/etc/zabbix/zabbix_java_gateway.conf ;\
+        fi
+
+override_jh_depends:
+	## make sure java-gateway.jar is executable. This is needed for jh_depends to generate correct {java:Depends}
+	if [ -d "$(CURDIR)/debian/$(PKG_GATEWAY_JAVA)" ]; then \
+            chmod -v +x $(CURDIR)/debian/$(PKG_GATEWAY_JAVA)/usr/sbin/*.jar ;\
+        fi
+	jh_depends -v -p$(PKG_GATEWAY_JAVA)
+
+override_dh_installinit:
+	dh_installinit -p $(PKG_AGENT)
+	dh_installinit -p $(PKG_GATEWAY_JAVA)
+	dh_installinit -p $(PKG_PROXY_MYSQL) --name zabbix-proxy
+	dh_installinit -p $(PKG_PROXY_PGSQL) --name zabbix-proxy
+	dh_installinit -p $(PKG_PROXY_SQLITE3) --name zabbix-proxy
+	dh_installinit -p $(PKG_SERVER_MYSQL) --name zabbix-server
+	dh_installinit -p $(PKG_SERVER_PGSQL) --name zabbix-server
+	dh_installinit -p $(PKG_SERVER_SQLITE3) --name zabbix-server
+
+override_dh_builddeb:
+	dh_builddeb -- -Zxz
+
+## http://wiki.debian.org/onlyjob/get-orig-source
+PKD   = $(abspath $(dir $(MAKEFILE_LIST)))
+PKG   = $(word 2,$(shell dpkg-parsechangelog -l$(PKD)/changelog | grep ^Source))
+VER  ?= $(shell dpkg-parsechangelog -l$(PKD)/changelog | perl -ne 'print $$1 if m{Version:\s*(?:\d:)?([\d\.]+)}')
+DTYPE = +dfsg
+.PHONY: get-orig-source
+get-orig-source: $(PKG)_$(VER)$(DTYPE).orig.tar.xz $(info I: $(PKG)_$(VER)$(DTYPE))
+	@
+
+$(PKG)_$(VER)$(DTYPE).orig.tar.xz:
+	@echo "# Downloading..."
+	uscan --noconf --verbose --rename --destdir=$(CURDIR) --check-dirname-level=0 --force-download --download-version $(VER) $(PKD)
+	$(if $(wildcard $(PKG)-$(VER)),$(error $(PKG)-$(VER) exist, aborting..))
+	@echo "# Extracting..."
+	mkdir $(PKG)-$(VER) \
+        && tar -xf $(PKG)_$(VER).orig.tar.* --directory $(PKG)-$(VER) --strip-components 1 \
+        || $(RM) -r $(PKG)-$(VER)
+	# Fix permissions (some images files are executable in orig.tars)
+	find $(PKG)-$(VER)/frontends/php/images -type f -executable -print -exec chmod a-x '{}' \;
+	@echo "# Cleaning-up..."
+	cd $(PKG)-$(VER) \
+        && find . -type f -name '*.exe' -delete -printf 'removed %p\n' \
+        && $(RM) -r -v \
+            bin/win*/dev/*.dll \
+            bin/win*/dev/*.lib \
+            frontends/php/images/flash \
+            src/zabbix_java/lib/*.jar
+	@echo "# Packing..."
+	find -L "$(PKG)-$(VER)" -xdev -type f -print | sort \
+        | XZ_OPT="-6v" tar -caf "$(PKG)_$(VER)$(DTYPE).orig.tar.xz" -T- --owner=root --group=root --mode=a+rX \
+        && $(RM) -r "$(PKG)-$(VER)"

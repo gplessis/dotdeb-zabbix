@@ -1,0 +1,4 @@
+## Sources provided in "debian/patches/missing-source".
+source-is-missing frontends/php/js/jquery/jquery-ui.js
+source-is-missing frontends/php/js/jquery/jquery.js
+source-is-missing frontends/php/js/vendors/activity-indicator.js

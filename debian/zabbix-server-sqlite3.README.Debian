@@ -1,0 +1,19 @@
+Installing the database
+-----------------------
+
+The Zabbix server needs an SQL database to run.
+The following command(s) can be used to initialize SQLite3 backend:
+
+  # zcat /usr/share/zabbix-server-sqlite3/{schema,images,data}.sql.gz \
+    | sqlite3 /var/lib/zabbix/zabbix.sqlite3
+  # chown -R zabbix:www-data /var/lib/zabbix
+  # chmod -R g+w /var/lib/zabbix
+
+Remember to check if DBname configuration parameter is set as follows in
+/etc/zabbix/zabbix_server.conf
+
+  DBName=/var/lib/zabbix/zabbix.sqlite3
+
+See also:
+http://www.zabbix.com/documentation/2.0/manual/appendix/install/db_scripts
+

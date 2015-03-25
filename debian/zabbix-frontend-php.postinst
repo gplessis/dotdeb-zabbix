@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "configure" ]; then
+    #---- dbconfig-common is no longer used - so the old config file can be removed
+    # Can be removed after Wheezy:
+    ucf --purge /etc/zabbix/dbconfig.php
+    # Can be removed after Wheezy:
+    rm -f /etc/zabbix/dbconfig.php
+    #------------------------------------
+fi
+
+#DEBHELPER#
