@@ -1,3 +1,11 @@
+zabbix (1:2.2.10-1~dotdeb+6.1) oldoldstable; urgency=medium
+
+  * Imported Upstream version 2.2.10
+  * Patches refresh for 2.2.10
+  * Enable automatic builds (watch + Dockerfiles)
+
+ -- Guillaume Plessis <gui@dotdeb.org>  Fri, 28 Aug 2015 15:27:22 -0700
+
 zabbix (1:2.2.9-1~dotdeb.0) oldstable; urgency=medium
 
   * Imported Upstream version 2.2.9
