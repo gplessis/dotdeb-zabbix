@@ -31,7 +31,7 @@ Index: dotdeb-zabbix/src/zabbix_java/settings.sh
  
  ### Option: zabbix.listenIP
  #	IP address to listen on.
-@@ -18,13 +18,11 @@
+@@ -18,13 +18,12 @@
  
  ### Option: zabbix.pidFile
  #	Name of PID file.
@@ -40,16 +40,16 @@ Index: dotdeb-zabbix/src/zabbix_java/settings.sh
  # Mandatory: no
  # Default:
  # PID_FILE=
--
+ 
 -PID_FILE="/tmp/zabbix_java.pid"
 +# PID_FILE="/var/run/zabbix/zabbix_java_gateway.pid"
  
  ### Option: zabbix.startPollers
  #	Number of worker threads to start.
-@@ -33,3 +31,9 @@ PID_FILE="/tmp/zabbix_java.pid"
- # Range: 1-1000
+@@ -41,3 +40,9 @@ PID_FILE="/tmp/zabbix_java.pid"
+ # Range: 1-30
  # Default:
- # START_POLLERS=5
+ # TIMEOUT=3
 +
 +### JVM options (passed to /usr/bin/java).
 +#
