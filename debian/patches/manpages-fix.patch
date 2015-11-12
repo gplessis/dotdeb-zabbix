@@ -19,12 +19,12 @@ Index: dotdeb-zabbix/man/zabbix_sender.man
 --- dotdeb-zabbix.orig/man/zabbix_sender.man
 +++ dotdeb-zabbix/man/zabbix_sender.man
 @@ -1,4 +1,4 @@
--.TH ZABBIX_SENDER 8 "10 November 2011"
-+.TH ZABBIX_SENDER 1 "10 November 2011"
+-.TH ZABBIX_SENDER 8 "16 October 2015"
++.TH ZABBIX_SENDER 1 "16 October 2015"
  .if n .ad l
  .SH NAME
  zabbix_sender \- Zabbix sender utility.
-@@ -33,7 +33,7 @@ If target item has triggers referencing 
+@@ -71,7 +71,7 @@ For more details please see option \fB--
  .IP "-r, --real-time"
  Send values one by one as soon as they are received. This can be used when reading from standard input.
  .IP "-v, --verbose"
