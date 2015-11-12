@@ -2710,7 +2710,6 @@ INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5228','
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5230','322','23135');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5423','322','23136');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5425','322','23137');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5240','322','23159');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5247','322','23164');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5253','322','23165');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5266','322','23167');
@@ -2724,6 +2723,7 @@ INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5243','
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5234','328','23147');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5235','328','23148');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5226','328','23158');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5240','328','23159');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5241','329','23160');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5242','329','23161');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5522','329','23326');
