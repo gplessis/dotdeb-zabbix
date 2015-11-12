@@ -1,3 +1,10 @@
+zabbix (1:2.2.11-1~dotdeb+6.1) oldoldstable; urgency=medium
+
+  * Imported Upstream version 2.2.11
+  * Patches refresh for 2.2.11
+
+ -- Guillaume Plessis <gui@dotdeb.org>  Thu, 12 Nov 2015 10:49:06 -0800
+
 zabbix (1:2.2.10-1~dotdeb+6.1) oldoldstable; urgency=medium
 
   * Imported Upstream version 2.2.10
