@@ -7928,9 +7928,6 @@ INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5423','
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5425','322','23137')
 /
 
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5240','322','23159')
-/
-
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5247','322','23164')
 /
 
@@ -7968,6 +7965,9 @@ INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5235','
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5226','328','23158')
+/
+
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5240','328','23159')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('5241','329','23160')
